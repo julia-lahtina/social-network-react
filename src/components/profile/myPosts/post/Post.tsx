@@ -3,8 +3,9 @@ import s from './Post.module.css';
 
 export type PostPropsType = {
     message: string
+    likeCounts: number
 }
-export const Post = ({message}: PostPropsType) => {
+export const Post = ({message, likeCounts}: PostPropsType) => {
     return (
         <div className={s.item}>
             <img
@@ -12,7 +13,7 @@ export const Post = ({message}: PostPropsType) => {
                 alt={'avatar'}/>
             {message}
             <div>
-                <span>like</span>
+                <span>{likeCounts} like</span>
             </div>
         </div>
     );
