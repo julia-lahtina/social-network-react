@@ -5,7 +5,7 @@ import s from './Header.module.css'
 export const Header = () => {
     return (
             <header className={s.header}>
-                <img src="https://cdn.worldvectorlogo.com/logos/batman-30538.svg" alt=""/>
+                <img src="https://www.svgrepo.com/show/343564/italki-communication-interaction-message-network-connection.svg" alt=""/>
             </header>
     );
 };
