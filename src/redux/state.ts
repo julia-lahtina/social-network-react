@@ -38,6 +38,13 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
+export type AddPostType = {
+    addPost: (postMessage: string) => void
+}
+
+
+export type AppPropsType = RootStateType & AddPostType
+
 
 let state: RootStateType = {
     profilePage: {
@@ -68,6 +75,13 @@ let state: RootStateType = {
             {id: 3, name: 'Viktor'},
         ]
     }
+}
+
+
+export const addPost = (postMessage: string) => {
+    const newPost: PostType = {id: 4, message: postMessage, likesCount: 0};
+    const posts = {...state, profilePage: {...state.profilePage, posts: [...state.profilePage.posts, newPost]}}
+    console.log(posts)
 }
 
 export default state;
