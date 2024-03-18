@@ -8,10 +8,10 @@ import {Route} from 'react-router-dom';
 import {News} from './components/news/News';
 import {Music} from './components/music/Music';
 import {Settings} from './components/settings/Settings';
+import {RootStateType} from './redux/state';
 
 
-
-function App(props: AppPropsType) {
+function App(props: RootStateType) {
 
 
     return (
@@ -19,11 +19,13 @@ function App(props: AppPropsType) {
             <Header/>
             <NavBar/>
             <div className={'app-wrapper-content'}>
-                <Route path={'/dialogs'} render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                <Route path={'/profile'} render={() => <Profile posts={props.posts}/>}/>
+                <Route path={'/dialogs'} render={() => <Dialogs dialogs={props.dialogsPage.dialogs}
+                                                                messages={props.dialogsPage.messages}/>}/>
+                <Route path={'/profile'} render={() => <Profile posts={props.profilePage.posts}/>}/>
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>
                 <Route path={'/settings'} render={() => <Settings/>}/>
+
             </div>
         </div>
     );

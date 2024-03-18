@@ -1,18 +1,12 @@
 import React from 'react';
 import {Post} from './post/Post';
 import s from './MyPosts.module.css'
-import {ProfilePropsType} from '../../../index';
+import {ProfilePageType} from '../../../redux/state';
 
 
-export const MyPosts = (props: ProfilePropsType) => {
+export const MyPosts = (props: ProfilePageType) => {
 
-/*    let posts = [
-        {message: 'Hi, how are you?', likes: 15},
-        {message: 'It\'s my first post', likes: 20},
-        {message: 'bla bla test', likes: 5},
-    ]*/
-
-    let postsElements = props.posts.map(p => <Post message={p.message} likesCounts={p.likes}/>)
+    let postsElements = props.posts.map(p => <Post message={p.message} likesCounts={p.likesCount}/>)
 
     return (
         <div className={s.postsBlock}>

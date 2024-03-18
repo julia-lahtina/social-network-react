@@ -7,7 +7,7 @@ import state from './redux/state'
 
 ReactDOM.render(
     <BrowserRouter>
-        <App state={state}/>
+        <App profilePage={state.profilePage} dialogsPage={state.dialogsPage} sidebar={state.sidebar}/>
     </BrowserRouter>,
     document.getElementById('root')
 );
