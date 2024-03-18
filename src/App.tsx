@@ -10,14 +10,17 @@ import {Music} from './components/music/Music';
 import {Settings} from './components/settings/Settings';
 
 
-function App() {
+
+function App(props: AppPropsType) {
+
+
     return (
         <div className="app-wrapper">
             <Header/>
             <NavBar/>
             <div className={'app-wrapper-content'}>
-                <Route path={'/dialogs'} render={() => <Dialogs/>}/>
-                <Route path={'/profile'} render={() => <Profile/>}/>
+                <Route path={'/dialogs'} render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                <Route path={'/profile'} render={() => <Profile posts={props.posts}/>}/>
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>
                 <Route path={'/settings'} render={() => <Settings/>}/>

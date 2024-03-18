@@ -1,12 +1,15 @@
 import React from 'react';
 import {MyPosts} from './myPosts/MyPosts';
 import {ProfileInfo} from './profileInfo/ProfileInfo';
+import {ProfilePropsType} from '../../index';
 
-export const Profile = () => {
+
+export const Profile = (props: ProfilePropsType) => {
+
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts/>
+            <MyPosts posts={props.posts}/>
         </div>
     );
 };
