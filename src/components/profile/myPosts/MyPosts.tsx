@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {Post} from './post/Post';
 import s from './MyPosts.module.css'
 import {AddPostType, ProfilePageType} from '../../../redux/state';
