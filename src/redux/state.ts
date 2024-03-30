@@ -1,4 +1,6 @@
-import {rerenderEntireTree} from '../render';
+let rerenderEntireTree = (state: RootStateType) => {
+
+}
 
 export type PostType = {
     id: number
@@ -24,6 +26,7 @@ export type ProfilePageType = {
 export type DialogPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
+    newMessageText: string
 }
 
 export type SidebarType = {
@@ -46,8 +49,13 @@ export type AddPostType = {
     updateNewPostText: (newPostText: string) => void
 }
 
+export type AddMessageType = {
+    addMessage: (newMessageText: string) => void
+    updateNewMessageText: (newMessageText: string) => void
+}
 
-export type AppPropsType = RootStateType & AddPostType
+
+export type AppPropsType = RootStateType & AddPostType & AddMessageType
 
 
 let state: RootStateType = {
@@ -71,7 +79,8 @@ let state: RootStateType = {
             {id: 2, message: 'How are you?'},
             {id: 3, message: 'Yoohoo'},
             {id: 4, message: 'Yoohoo'},
-        ]
+        ],
+        newMessageText: 'Hello...',
     },
     sidebar: {
         friends: [
@@ -93,6 +102,22 @@ export const addPost = (postMessage: string) => {
 export const updateNewPostText = (newPostText: string) => {
     state.profilePage.newPostText = newPostText;
     rerenderEntireTree(state)
+}
+
+export const addMessage = (newMessageText: string) => {
+    const newMessage: MessageType = {id: 5, message: newMessageText};
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = '';
+    rerenderEntireTree(state)
+}
+
+export const updateNewMessageText = (newMessageText: string) => {
+    state.dialogsPage.newMessageText = newMessageText;
+    rerenderEntireTree(state)
+}
+
+export const subscribe = (observer: (state: RootStateType) => void) => {
+    rerenderEntireTree = observer;
 }
 
 export default state;
