@@ -26,12 +26,15 @@ function App(props: AppPropsType) {
                             newMessageText={props.dialogsPage.newMessageText}
                             dialogs={props.dialogsPage.dialogs}
                             messages={props.dialogsPage.messages}
-                            addMessage={props.addMessage}
-                            updateNewMessageText={props.updateNewMessageText}
+                            dispatch={props.dispatch}
                         />}/>
-                <Route path={'/profile'} render={() => <Profile updateNewPostText={props.updateNewPostText}
-                                                                posts={props.profilePage.posts} addPost={props.addPost}
-                                                                newPostText={props.profilePage.newPostText}/>}/>
+                <Route path={'/profile'} render={() =>
+                    <Profile
+                        posts={props.profilePage.posts}
+                        newPostText={props.profilePage.newPostText}
+                        dispatch={props.dispatch}
+                    />}/>
+
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>
                 <Route path={'/settings'} render={() => <Settings/>}/>

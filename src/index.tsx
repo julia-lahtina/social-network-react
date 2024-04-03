@@ -15,10 +15,7 @@ export let rerenderEntireTree = (state: RootStateType) => {
                 profilePage={state.profilePage}
                 dialogsPage={state.dialogsPage}
                 sidebar={state.sidebar}
-                addPost={store.addPost.bind(store)}
-                updateNewPostText={store.updateNewPostText.bind(store)}
-                addMessage={store.addMessage.bind(store)}
-                updateNewMessageText={store.updateNewMessageText.bind(store)}
+                dispatch={store.dispatch.bind(store)}
             />
         </BrowserRouter>,
         document.getElementById('root')
