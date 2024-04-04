@@ -101,7 +101,7 @@ let store: StoreType = {
                     {id: 3, message: 'bla bla test', likesCount: 5},
                 ],
                 newPostText:
-                    'it-kamasutra.com',
+                    '',
             }
             ,
             dialogsPage: {
@@ -119,7 +119,7 @@ let store: StoreType = {
                         {id: 4, message: 'Yoohoo'},
                     ],
                 newMessageText:
-                    'Hello...',
+                    '',
             }
             ,
             sidebar: {
