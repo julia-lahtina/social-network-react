@@ -1,12 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import {Post} from './post/Post';
 import s from './MyPosts.module.css'
-import {
-    addPostActionCreator,
-    PostMessageType,
-    ProfilePageType,
-    updateNewPostTextActionCreator
-} from '../../../redux/state';
+import {PostMessageType, ProfilePageType} from '../../../redux/state';
+import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/profile_reducer';
 
 
 export const MyPosts = (props: ProfilePageType & PostMessageType) => {
@@ -14,7 +10,7 @@ export const MyPosts = (props: ProfilePageType & PostMessageType) => {
     let postsElements = props.posts.map(p => <Post message={p.message} likesCounts={p.likesCount}/>)
 
     const onClickHandler = () => {
-            props.dispatch(addPostActionCreator(props.newPostText));
+            props.dispatch(addPostActionCreator());
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
