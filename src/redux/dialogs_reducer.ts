@@ -1,4 +1,4 @@
-import {ActionsTypes, DialogPageType} from './state';
+import {ActionsTypes, DialogPageType, MessageType} from './state';
 
 
 const ADD_MESSAGE = 'ADD_MESSAGE';
@@ -7,10 +7,18 @@ export const dialogsReducer = (state: DialogPageType, action: ActionsTypes): Dia
     switch (action.type) {
 
         case 'ADD_MESSAGE':
-            return state;
+            const newMessage: MessageType = {id: 5, message: state.newMessageText};
+            return {
+                ...state,
+                messages: [...state.messages, newMessage],
+                newMessageText: ''
+            };
 
         case 'UPDATE_NEW_MESSAGE_TEXT':
-            return state;
+            return {
+                ...state,
+                newMessageText: action.newMessageText
+            };
 
         default:
             return state
@@ -20,6 +28,7 @@ export const dialogsReducer = (state: DialogPageType, action: ActionsTypes): Dia
 
 export type AddMessageType = ReturnType<typeof addMessageActionCreator>
 export type UpdateNewMessageTextType = ReturnType<typeof updateNewMessageTextActionCreator>
+
 export const addMessageActionCreator = (newMessageText: string) => {
     return {
         type: ADD_MESSAGE,

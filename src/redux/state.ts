@@ -123,23 +123,6 @@ let store: StoreType = {
         // this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
         this._rerenderEntireTree(this._state)
-
-        /*
-                } else if (action.type === UPDATE_NEW_POST_TEXT) {
-                    this._state.profilePage.newPostText = action.newPostText;
-                    this._rerenderEntireTree(this._state)
-                } else if (action.type === ADD_MESSAGE) {
-                    const newMessage: MessageType = {id: 5, message: action.newMessageText};
-                    this._state.dialogsPage.messages.push(newMessage);
-                    this._state.dialogsPage.newMessageText = '';
-                    this._rerenderEntireTree(this._state)
-                } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-                    this._state.dialogsPage.newMessageText = action.newMessageText;
-                    this._rerenderEntireTree(this._state)
-                }
-            }*/
-
-
     }
 }
 
