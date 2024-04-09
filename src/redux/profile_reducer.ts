@@ -7,8 +7,16 @@ export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAct
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
-
-export const profileReducer = (state: ProfilePageType, action: ActionsTypes): ProfilePageType => {
+const initialState: ProfilePageType = {
+    posts: [
+        {id: 1, message: 'Hi, how are you?', likesCount: 15},
+        {id: 2, message: 'It\'s my first post', likesCount: 20},
+        {id: 3, message: 'bla bla test', likesCount: 5},
+    ],
+    newPostText:
+        '',
+}
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType = {id: state.posts.length + 1, message: state.newPostText, likesCount: 0};

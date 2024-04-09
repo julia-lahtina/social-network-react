@@ -1,7 +1,13 @@
 import {ActionsTypes, SidebarType} from './store';
 
-export const sidebarReducer = (state: SidebarType, action: ActionsTypes) => {
-    switch (action.type) {
 
-    }
+const initialState: SidebarType = {
+    friends: [
+        {id: 1, name: 'Sveta'},
+        {id: 2, name: 'Valera'},
+        {id: 3, name: 'Viktor'},
+    ]
+}
+export const sidebarReducer = (state: SidebarType = initialState, action: ActionsTypes) => {
+        return state
 }
