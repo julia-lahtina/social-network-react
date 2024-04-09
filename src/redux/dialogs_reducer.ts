@@ -1,4 +1,4 @@
-import {ActionsTypes, DialogPageType, MessageType} from './state';
+import {ActionsTypes, DialogPageType, MessageType} from './store';
 
 
 const ADD_MESSAGE = 'ADD_MESSAGE';
