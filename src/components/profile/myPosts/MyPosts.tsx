@@ -1,21 +1,20 @@
 import React, {ChangeEvent} from 'react';
 import {Post} from './post/Post';
 import s from './MyPosts.module.css'
-import {PostMessageType, ProfilePageType} from '../../../redux/store';
-import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/profile_reducer';
+import {MyPostsPagePropsType} from './MyPostsContainer';
 
 
-export const MyPosts = (props: ProfilePageType & PostMessageType) => {
+export const MyPosts = (props: MyPostsPagePropsType) => {
 
     let postsElements = props.posts.map(p => <Post message={p.message} likesCounts={p.likesCount}/>)
 
     const onClickHandler = () => {
-            props.dispatch(addPostActionCreator());
+        props.addPost()
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let newPostText = e.currentTarget.value;
-        props.dispatch(updateNewPostTextActionCreator(newPostText))
+        props.updateNewPostText(newPostText)
     }
 
 

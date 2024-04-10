@@ -9,6 +9,7 @@ import {News} from './components/news/News';
 import {Music} from './components/music/Music';
 import {Settings} from './components/settings/Settings';
 import {AppPropsType} from './redux/store';
+import {StorePropsType} from './redux/redux-store';
 
 
 function App(props: AppPropsType) {
@@ -29,11 +30,7 @@ function App(props: AppPropsType) {
                             dispatch={props.dispatch}
                         />}/>
                 <Route path={'/profile'} render={() =>
-                    <Profile
-                        posts={props.profilePage.posts}
-                        newPostText={props.profilePage.newPostText}
-                        dispatch={props.dispatch}
-                    />}/>
+                    <Profile/>}/>
 
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>

@@ -1,5 +1,7 @@
 import {AddPostActionType, profileReducer, UpdateNewPostTextActionType} from './profile_reducer';
 import {AddMessageType, dialogsReducer, UpdateNewMessageTextType} from './dialogs_reducer';
+import {AppRootStateType, StorePropsType} from './redux-store';
+import {ChangeEvent} from 'react';
 
 
 export type PostType = {
@@ -61,7 +63,7 @@ export type MessageDialogsType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type AppPropsType = RootStateType & PostMessageType & MessageDialogsType
+export type AppPropsType = AppRootStateType & PostMessageType & MessageDialogsType
 
 
 export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | AddMessageType | UpdateNewMessageTextType
