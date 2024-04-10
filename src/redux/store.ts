@@ -1,7 +1,7 @@
 import {AddPostActionType, profileReducer, UpdateNewPostTextActionType} from './profile_reducer';
 import {AddMessageType, dialogsReducer, UpdateNewMessageTextType} from './dialogs_reducer';
-import {AppRootStateType, StorePropsType} from './redux-store';
-import {ChangeEvent} from 'react';
+import {AppRootStateType} from './redux-store';
+
 
 
 export type PostType = {

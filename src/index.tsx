@@ -1,5 +1,5 @@
 import './index.css';
-import {AppRootStateType, store, StorePropsType} from './redux/redux-store';
+import {AppRootStateType, store} from './redux/redux-store';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
