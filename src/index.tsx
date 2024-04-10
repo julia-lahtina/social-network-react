@@ -8,26 +8,20 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 
-export let rerenderEntireTree = (state: AppRootStateType) => {
+export let rerenderEntireTree = () => {
     ReactDOM.render(
         <Provider store={store}>
             <BrowserRouter>
-                <App
-                    profilePage={state.profilePage}
-                    dialogsPage={state.dialogsPage}
-                    sidebarPage={state.sidebarPage}
-                    dispatch={store.dispatch.bind(store)}
-                />
+                <App/>
             </BrowserRouter>
         </Provider>,
         document.getElementById('root')
     )
 }
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree();
 
 store.subscribe(() => {
-    let state = store.getState();
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 });
 

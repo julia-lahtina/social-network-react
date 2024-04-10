@@ -7,11 +7,10 @@ import {Route} from 'react-router-dom';
 import {News} from './components/news/News';
 import {Music} from './components/music/Music';
 import {Settings} from './components/settings/Settings';
-import {AppPropsType} from './redux/store';
 import {DialogsContainer} from './components/dialogs/DialogsContainer';
 
 
-function App(props: AppPropsType) {
+function App() {
 
 
     return (
