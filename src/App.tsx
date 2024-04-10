@@ -9,7 +9,7 @@ import {News} from './components/news/News';
 import {Music} from './components/music/Music';
 import {Settings} from './components/settings/Settings';
 import {AppPropsType} from './redux/store';
-import {StorePropsType} from './redux/redux-store';
+import {DialogsContainer} from './components/dialogs/DialogsContainer';
 
 
 function App(props: AppPropsType) {
@@ -23,12 +23,7 @@ function App(props: AppPropsType) {
                 <Route
                     path={'/dialogs'}
                     render={() =>
-                        <Dialogs
-                            newMessageText={props.dialogsPage.newMessageText}
-                            dialogs={props.dialogsPage.dialogs}
-                            messages={props.dialogsPage.messages}
-                            dispatch={props.dispatch}
-                        />}/>
+                        <DialogsContainer/>}/>
                 <Route path={'/profile'} render={() =>
                     <Profile/>}/>
 
