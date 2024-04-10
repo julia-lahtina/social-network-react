@@ -30,7 +30,7 @@ export const Dialogs = (props: DialogsPagePropsType) => {
                 <div className={s.messages}>
                     {messagesElements}
                     <div>
-                        <textarea onChange={onMessageChange} value={props.dialogsPage.newMessageText}/>
+                        <textarea onChange={onMessageChange} value={props.dialogsPage.newMessageText} placeholder={'enter your message...'}/>
                     </div>
                     <div>
                         <button onClick={onMessageClick}>send message</button>
