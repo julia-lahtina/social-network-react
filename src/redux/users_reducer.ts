@@ -2,17 +2,21 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
-type UsersPropsType = {
+export type UsersPropsType = {
     users: UserType[]
 }
 
 export type UserType = {
+    name: string
     id: number
-    photoUrl: string
-    followed: boolean
-    fullName: string
+    uniqueUrlName: '',
+    photos: {
+        small: string,
+        large: string
+    }
     status: string
-    location: LocationType
+    followed: boolean
+    //location: LocationType
 }
 
 type LocationType = {
@@ -21,15 +25,10 @@ type LocationType = {
 }
 
 const initialState: UsersPropsType = {
-    users: []
+    users: [] as UserType[]
 }
 export const usersReducer = (state: UsersPropsType = initialState, action: ActionsTypes): UsersPropsType => {
     switch (action.type) {
-        case SET_USERS:
-            return {
-                ...state,
-                users: {...state.users, ...action.users} // склеиваем два массива, тот что был уже и тот что пришел с сервера
-            }
         case FOLLOW:
             return {
                 ...state,
@@ -39,6 +38,11 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Actio
             return {
                 ...state,
                 users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)
+            }
+        case SET_USERS:
+            return {
+                ...state,
+                users: [...state.users, ...action.users] // склеиваем два массива, тот что был уже и тот что пришел с сервера
             }
         default:
             return state

@@ -14,7 +14,7 @@ type mapDispatchToPropsType = {
     setUsers: (users: UserType[]) => void
 }
 
-export type UsersPagePropsType = mapStateToPropsType | mapDispatchToPropsType
+export type UsersPagePropsType = mapStateToPropsType & mapDispatchToPropsType
 
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     return {
