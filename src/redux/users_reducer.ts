@@ -21,32 +21,7 @@ type LocationType = {
 }
 
 const initialState: UsersPropsType = {
-    users: [
-        {
-            id: 1,
-            photoUrl: 'https://dbrizhatyuk.github.io/author/dmitry-brizhatyuk/avatar_hu81b683c0ced02b8de400cae5e86a8c01_9488_270x270_fill_q90_lanczos_center.jpg',
-            followed: true,
-            fullName: 'Dmitry',
-            status: 'I\'m a boss',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: 2,
-            photoUrl: 'https://de.inksearch.co/_next/image?url=https%3A%2F%2Finks.inksearch.co%2Favatars%2Fthumb%2Fxtg7EOZhHmXStbHWFcw7UpwiMNhvdB9rwCPjpJba.jpeg&w=3840&q=75',
-            followed: true,
-            fullName: 'Igor',
-            status: 'I\'m a boss too',
-            location: {city: 'Omsk', country: 'Russia'}
-        },
-        {
-            id: 3,
-            photoUrl: 'https://i.pinimg.com/200x/aa/53/fc/aa53fc520da9eef53a71b2e4e46d8502.jpg',
-            followed: false,
-            fullName: 'Olga',
-            status: 'I\'m a boss too',
-            location: {city: 'Berlin', country: 'German'}
-        },
-    ]
+    users: []
 }
 export const usersReducer = (state: UsersPropsType = initialState, action: ActionsTypes): UsersPropsType => {
     switch (action.type) {
