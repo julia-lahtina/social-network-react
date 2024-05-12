@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/social-network-react/static/css/main.938fd32d.css",
-    "main.js": "/social-network-react/static/js/main.6e1f851c.js",
+    "main.css": "/social-network-react/static/css/main.eb4cbe3d.css",
+    "main.js": "/social-network-react/static/js/main.ad6bc8e7.js",
+    "static/media/user.png": "/social-network-react/static/media/user.99bf1b65e741fd526c0b.png",
     "index.html": "/social-network-react/index.html",
-    "main.938fd32d.css.map": "/social-network-react/static/css/main.938fd32d.css.map",
-    "main.6e1f851c.js.map": "/social-network-react/static/js/main.6e1f851c.js.map"
+    "main.eb4cbe3d.css.map": "/social-network-react/static/css/main.eb4cbe3d.css.map",
+    "main.ad6bc8e7.js.map": "/social-network-react/static/js/main.ad6bc8e7.js.map"
   },
   "entrypoints": [
-    "static/css/main.938fd32d.css",
-    "static/js/main.6e1f851c.js"
+    "static/css/main.eb4cbe3d.css",
+    "static/js/main.ad6bc8e7.js"
   ]
 }
