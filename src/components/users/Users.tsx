@@ -1,72 +1,56 @@
 import * as React from 'react';
 import { UserType } from '../../redux/users_reducer';
-import s from './Users.module.css'
-import axios from 'axios';
-import userPhoto from '../../assets/images/user.png'
 import { UsersPagePropsType } from './UsersContainer';
+import s from './Users.module.css'
+import userPhoto from '../../assets/images/user.png'
 
 
-export class Users extends React.Component<UsersPagePropsType> {
+type onPageChangedType = {
+    onPageChanged: (pageNumber: number) => void
+}
 
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(res => {
-                this.props.setUsers(res.data.items);
-                this.props.setTotalUsersCount(res.data.totalCount);
-            });
+export const Users = (props: UsersPagePropsType & onPageChangedType) => {
+
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+
+    let pages = []
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
 
-    onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(res => {
-                this.props.setUsers(res.data.items);
-            });
-    }
-
-    render() {
-
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-
-        let pages = []
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-
-        return (
+    return (
+        <div>
             <div>
-                <div>
-                    {pages.map((p: number) => {
-                        return <span className={this.props.currentPage === p ? s.selectedPage : ''} onClick={() => this.onPageChanged(p)}>{p}</span>
-                    })}
-                </div>
-                {this.props.users.map((u: UserType) => <div key={u.id}>
-                    <span>
-                        <div>
-                            <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto}
-                                alt="user_photo" />
-                        </div>
-                        <div>
-                            {u.followed && <button onClick={() => {
-                                this.props.unfollow(u.id)
-                            }}>Unfollow</button>}
-                            {!u.followed && <button onClick={() => {
-                                this.props.follow(u.id)
-                            }}>Follow</button>}
-                        </div>
-                    </span>
-                    <span>
-                        <span>
-                            <div>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                        <span>
-                            <div>{'u.location.country'}</div>
-                            <div>{'u.location.city'}</div>
-                        </span>
-                    </span>
-                </div>)}
+                {pages.map((p: number) => {
+                    return <span className={props.currentPage === p ? s.selectedPage : ''} onClick={() => props.onPageChanged(p)}>{p}</span>
+                })}
             </div>
-        );
-    }
+            {props.users.map((u: UserType) => <div key={u.id}>
+                <span>
+                    <div>
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto}
+                            alt="user_photo" />
+                    </div>
+                    <div>
+                        {u.followed && <button onClick={() => {
+                            props.unfollow(u.id)
+                        }}>Unfollow</button>}
+                        {!u.followed && <button onClick={() => {
+                            props.follow(u.id)
+                        }}>Follow</button>}
+                    </div>
+                </span>
+                <span>
+                    <span>
+                        <div>{u.name}</div>
+                        <div>{u.status}</div>
+                    </span>
+                    <span>
+                        <div>{'u.location.country'}</div>
+                        <div>{'u.location.city'}</div>
+                    </span>
+                </span>
+            </div>)}
+        </div>
+    );
 }

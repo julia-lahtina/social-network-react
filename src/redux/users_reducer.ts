@@ -33,7 +33,7 @@ const initialState: UsersPropsType = {
     users: [] as UserType[],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 2
+    currentPage: 1
 }
 export const usersReducer = (state: UsersPropsType = initialState, action: ActionsTypes): UsersPropsType => {
     switch (action.type) {
