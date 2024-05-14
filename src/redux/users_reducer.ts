@@ -78,50 +78,50 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Actio
 type ActionsTypes = followACType | unfollowACType | setUsersType | setCurrentPageType | setTotalUsersCountType | toggleIsFetchingACType
 
 
-type followACType = ReturnType<typeof followAC>
-type unfollowACType = ReturnType<typeof unfollowAC>
-type setUsersType = ReturnType<typeof setUsersAC>
-type setCurrentPageType = ReturnType<typeof setCurrentPageAC>
-type setTotalUsersCountType = ReturnType<typeof setTotalUsersCountAC>
-type toggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>
+type followACType = ReturnType<typeof follow>
+type unfollowACType = ReturnType<typeof unfollow>
+type setUsersType = ReturnType<typeof setUsers>
+type setCurrentPageType = ReturnType<typeof setCurrentPage>
+type setTotalUsersCountType = ReturnType<typeof setTotalUsersCount>
+type toggleIsFetchingACType = ReturnType<typeof toggleIsFetching>
 
 
-export const followAC = (userId: number) => {
+export const follow = (userId: number) => {
     return {
         type: FOLLOW,
         userId
     } as const
 }
 
-export const unfollowAC = (userId: number) => {
+export const unfollow = (userId: number) => {
     return {
         type: UNFOLLOW,
         userId
     } as const
 }
 
-export const setUsersAC = (users: UserType[]) => {
+export const setUsers = (users: UserType[]) => {
     return {
         type: SET_USERS,
         users
     } as const
 }
 
-export const setCurrentPageAC = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage
     } as const
 }
 
-export const setTotalUsersCountAC = (totalUsersCount: number) => {
+export const setTotalUsersCount = (totalUsersCount: number) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         totalUsersCount
     } as const
 }
 
-export const toggleIsFetchingAC = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching }) as const
+export const toggleIsFetching = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching }) as const
 
 
 
