@@ -3,12 +3,14 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 export type UsersPropsType = {
     users: UserType[],
     pageSize: number,
     totalUsersCount: number,
-    currentPage: number
+    currentPage: number,
+    isFetching: boolean
 }
 
 export type UserType = {
@@ -33,7 +35,8 @@ const initialState: UsersPropsType = {
     users: [] as UserType[],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 export const usersReducer = (state: UsersPropsType = initialState, action: ActionsTypes): UsersPropsType => {
     switch (action.type) {
@@ -62,19 +65,25 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Actio
                 ...state,
                 totalUsersCount: action.totalUsersCount
             }
-
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
         default:
             return state
     }
 }
 
-type ActionsTypes = followACType | unfollowACType | setUsersType | setCurrentPageType | setTotalUsersCountType
+type ActionsTypes = followACType | unfollowACType | setUsersType | setCurrentPageType | setTotalUsersCountType | toggleIsFetchingACType
+
 
 type followACType = ReturnType<typeof followAC>
 type unfollowACType = ReturnType<typeof unfollowAC>
 type setUsersType = ReturnType<typeof setUsersAC>
 type setCurrentPageType = ReturnType<typeof setCurrentPageAC>
 type setTotalUsersCountType = ReturnType<typeof setTotalUsersCountAC>
+type toggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>
 
 
 export const followAC = (userId: number) => {
@@ -112,6 +121,7 @@ export const setTotalUsersCountAC = (totalUsersCount: number) => {
     } as const
 }
 
+export const toggleIsFetchingAC = (isFetching: boolean) => ({ type: TOGGLE_IS_FETCHING, isFetching }) as const
 
 
 
