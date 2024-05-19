@@ -1,12 +1,12 @@
-import React, {ChangeEvent} from 'react';
-import {Post} from './post/Post';
+import React, { ChangeEvent } from 'react';
+import { Post } from './post/Post';
 import s from './MyPosts.module.css'
-import {MyPostsPagePropsType} from './MyPostsContainer';
+import { MyPostsPagePropsType } from './MyPostsContainer';
 
 
 export const MyPosts = (props: MyPostsPagePropsType) => {
 
-    let postsElements = props.posts.map(p => <Post message={p.message} likesCounts={p.likesCount}/>)
+    let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCounts={p.likesCount} />)
 
     const onClickHandler = () => {
         props.addPost()
@@ -23,7 +23,7 @@ export const MyPosts = (props: MyPostsPagePropsType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} value={props.newPostText}/>
+                    <textarea onChange={onPostChange} value={props.newPostText} />
                 </div>
                 <div>
                     <button onClick={onClickHandler}>Add post</button>

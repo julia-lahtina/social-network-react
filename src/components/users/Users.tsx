@@ -3,6 +3,7 @@ import { UserType } from '../../redux/users_reducer';
 import { UsersPagePropsType } from './UsersContainer';
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/user.png'
+import { NavLink } from 'react-router-dom';
 
 
 type onPageChangedType = {
@@ -28,8 +29,10 @@ export const Users = (props: UsersPagePropsType & onPageChangedType) => {
             {props.users.map((u: UserType) => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto}
-                            alt="user_photo" />
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto}
+                                alt="user_photo" />
+                        </NavLink>
                     </div>
                     <div>
                         {u.followed && <button onClick={() => {

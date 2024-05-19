@@ -1,14 +1,15 @@
 import React from 'react';
-import {ProfileInfo} from './profileInfo/ProfileInfo';
-import {MyPostsContainer} from './myPosts/MyPostsContainer';
+import { ProfileInfo } from './profileInfo/ProfileInfo';
+import { MyPostsContainer } from './myPosts/MyPostsContainer';
+import { MapStateToPropsType } from './ProfileContainer';
 
 
-export const Profile = () => {
+export const Profile = (props: MapStateToPropsType) => {
 
     return (
         <div>
-            <ProfileInfo/>
-            <MyPostsContainer/>
+            <ProfileInfo profile={props.profile} />
+            <MyPostsContainer />
         </div>
     );
 };
