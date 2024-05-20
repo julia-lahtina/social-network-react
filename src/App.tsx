@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { Header } from './components/header/Header';
 import { NavBar } from './components/navBar/NavBar';
 import { Route } from 'react-router-dom';
 import { News } from './components/news/News';
@@ -9,14 +8,14 @@ import { Settings } from './components/settings/Settings';
 import { DialogsContainer } from './components/dialogs/DialogsContainer';
 import UsersContainer from './components/users/UsersContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
+import HeaderContainer from './components/header/HeaderContainer';
 
 
 function App() {
 
-
     return (
         <div className="app-wrapper">
-            <Header />
+            <HeaderContainer />
             <NavBar />
             <div className={'app-wrapper-content'}>
                 <Route

@@ -6,3 +6,11 @@
 .header img {
     width: 60px;
 }
+
+.loginBlog {
+    float: right;
+}
+
+.loginBlog a {
+    color: white;
+}
