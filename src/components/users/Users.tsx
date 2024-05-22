@@ -14,7 +14,6 @@ type onPageChangedType = {
 
 export const Users = (props: UsersPagePropsType & onPageChangedType) => {
 
-    const dispatch = useDispatch();
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
     let pages = []
@@ -41,7 +40,7 @@ export const Users = (props: UsersPagePropsType & onPageChangedType) => {
                         {u.followed
                             ? <button
                                 onClick={() => {
-                                    dispatch(toggleIsFetchingLoading(true, u.id))
+                                    props.toggleIsFetchingLoading(true, u.id)
                                     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                                         withCredentials: true,
                                         headers: {
@@ -52,7 +51,7 @@ export const Users = (props: UsersPagePropsType & onPageChangedType) => {
                                             if (res.data.resultCode === 0) {
                                                 props.unfollow(u.id)
                                             }
-                                            dispatch(toggleIsFetchingLoading(false, u.id))
+                                            props.toggleIsFetchingLoading(false, u.id)
                                         })
                                 }}
                                 disabled={props.followingInProgress.some((id: number) => id === u.id)}
@@ -61,7 +60,7 @@ export const Users = (props: UsersPagePropsType & onPageChangedType) => {
 
                             <button
                                 onClick={() => {
-                                    dispatch(toggleIsFetchingLoading(true, u.id))
+                                    props.toggleIsFetchingLoading(true, u.id)
                                     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                                         withCredentials: true,
                                         headers: {
@@ -72,7 +71,7 @@ export const Users = (props: UsersPagePropsType & onPageChangedType) => {
                                             if (res.data.resultCode === 0) {
                                                 props.follow(u.id)
                                             }
-                                            dispatch(toggleIsFetchingLoading(false, u.id))
+                                            props.toggleIsFetchingLoading(false, u.id)
                                         })
                                 }}
                                 disabled={props.followingInProgress.some((id: number) => id === u.id)}
