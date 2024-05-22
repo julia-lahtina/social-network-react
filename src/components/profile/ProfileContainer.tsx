@@ -1,7 +1,6 @@
 import React from "react";
 import { Profile } from "./Profile";
 import { connect } from "react-redux";
-import axios from "axios";
 import { AppRootStateType } from "../../redux/redux-store";
 import { setUserProfile } from "../../redux/profile_reducer";
 import { ProfilePageType } from "../../redux/store";

@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { AppRootStateType } from '../../redux/redux-store';
-import { follow, setCurrentPage, setUsers, unfollow, UserType, setTotalUsersCount, toggleIsFetching } from '../../redux/users_reducer';
-import axios from 'axios';
+import { follow, setCurrentPage, setUsers, unfollow, UserType, setTotalUsersCount, toggleIsFetching, toggleIsFetchingLoading } from '../../redux/users_reducer';
 import React from 'react';
 import { Users } from './Users';
 import { Preloader } from '../common/preloader/Preloader';
@@ -14,7 +13,8 @@ type mapStateToPropsType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    isFetching: boolean
+    isFetching: boolean,
+    followingInProgress: Array<number>
 }
 type mapDispatchToPropsType = {
     follow: (userId: number) => void
@@ -23,6 +23,7 @@ type mapDispatchToPropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    toggleIsFetchingLoading: (isFetching: boolean, userId: number) => void
 }
 
 
@@ -70,6 +71,8 @@ export class UsersContainer extends React.Component<UsersPagePropsType> {
                 onPageChanged={this.onPageChanged}
                 isFetching={this.props.isFetching}
                 toggleIsFetching={this.props.toggleIsFetching}
+                followingInProgress={this.props.followingInProgress}
+                toggleIsFetchingLoading={this.props.toggleIsFetchingLoading}
             />
         </div>
     }
@@ -82,7 +85,8 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -109,4 +113,4 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     }
 } */
 
-export default connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching })(UsersContainer);
+export default connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleIsFetchingLoading })(UsersContainer);
