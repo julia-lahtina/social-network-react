@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { UserType, toggleIsFetchingLoading } from '../../redux/users_reducer';
+import { UserType } from '../../redux/users_reducer';
 import { UsersPagePropsType } from './UsersContainer';
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/user.png'
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { api } from '../../api/api';
+
 
 
 type onPageChangedType = {
@@ -41,12 +42,7 @@ export const Users = (props: UsersPagePropsType & onPageChangedType) => {
                             ? <button
                                 onClick={() => {
                                     props.toggleIsFetchingLoading(true, u.id)
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                        withCredentials: true,
-                                        headers: {
-                                            'API-KEY': '9778ccc8-038a-4d81-9130-86ef29c12736'
-                                        }
-                                    })
+                                    api.unfollow(u.id)
                                         .then(res => {
                                             if (res.data.resultCode === 0) {
                                                 props.unfollow(u.id)
@@ -61,12 +57,7 @@ export const Users = (props: UsersPagePropsType & onPageChangedType) => {
                             <button
                                 onClick={() => {
                                     props.toggleIsFetchingLoading(true, u.id)
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                        withCredentials: true,
-                                        headers: {
-                                            'API-KEY': '9778ccc8-038a-4d81-9130-86ef29c12736'
-                                        }
-                                    })
+                                    api.follow(u.id)
                                         .then(res => {
                                             if (res.data.resultCode === 0) {
                                                 props.follow(u.id)

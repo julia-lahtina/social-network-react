@@ -16,6 +16,15 @@ export const api = {
     },
     getProfile(userId: string) {
         return instance.get<any>(`/profile/${userId}`)
+    },
+    follow(userId: number) {
+        return instance.post(`/follow/${userId}`)
+    },
+    unfollow(userId: number) {
+        return instance.delete(`/follow/${userId}`)
+    },
+    authMe() {
+        return instance.get('/auth/me')
     }
 }
 
