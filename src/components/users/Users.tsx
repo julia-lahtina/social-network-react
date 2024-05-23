@@ -4,8 +4,6 @@ import { UsersPagePropsType } from './UsersContainer';
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/user.png'
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
-import { api } from '../../api/api';
 
 
 
@@ -40,31 +38,13 @@ export const Users = (props: UsersPagePropsType & onPageChangedType) => {
                     <div>
                         {u.followed
                             ? <button
-                                onClick={() => {
-                                    props.toggleIsFetchingLoading(true, u.id)
-                                    api.unfollow(u.id)
-                                        .then(res => {
-                                            if (res.data.resultCode === 0) {
-                                                props.unfollow(u.id)
-                                            }
-                                            props.toggleIsFetchingLoading(false, u.id)
-                                        })
-                                }}
+                                onClick={() => { props.unfollowUser(u.id) }}
                                 disabled={props.followingInProgress.some((id: number) => id === u.id)}
                             >Unfollow</button>
                             :
 
                             <button
-                                onClick={() => {
-                                    props.toggleIsFetchingLoading(true, u.id)
-                                    api.follow(u.id)
-                                        .then(res => {
-                                            if (res.data.resultCode === 0) {
-                                                props.follow(u.id)
-                                            }
-                                            props.toggleIsFetchingLoading(false, u.id)
-                                        })
-                                }}
+                                onClick={() => { props.followUser(u.id) }}
                                 disabled={props.followingInProgress.some((id: number) => id === u.id)}
                             >Follow</button>
                         }

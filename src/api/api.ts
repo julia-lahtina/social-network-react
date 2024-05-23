@@ -23,7 +23,7 @@ export const api = {
     unfollow(userId: number) {
         return instance.delete(`/follow/${userId}`)
     },
-    authMe() {
+    me() {
         return instance.get('/auth/me')
     }
 }
