@@ -1,10 +1,14 @@
+import { Dispatch } from 'redux';
 import { ActionsTypes, PostType, ProfilePageType } from './store';
+import { api } from '../api/api';
 
-
+// types
 export type AddPostActionType = ReturnType<typeof addPostActionCreator>
 export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextActionCreator>
 export type SetUserProfileType = ReturnType<typeof setUserProfile>
 
+
+// reducer
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -57,7 +61,16 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
     }
 }
 
-
+// actions
 export const addPostActionCreator = () => ({ type: ADD_POST } as const)
 export const updateNewPostTextActionCreator = (newPostText: string) => ({ type: UPDATE_NEW_POST_TEXT, newPostText } as const)
 export const setUserProfile = (profile: ProfilePageType) => ({ type: SET_USER_PROFILE, profile } as const)
+
+
+// thunks
+export const getProfile = (userId: string) => (dispatch: Dispatch) => {
+    api.getProfile(userId)
+        .then(res => {
+            dispatch(setUserProfile(res.data))
+        });
+}

@@ -1,3 +1,6 @@
+import { Dispatch } from "redux"
+import { api } from "../api/api"
+
 // types
 export type initialStateType = {
     userId: number | null,
@@ -7,8 +10,8 @@ export type initialStateType = {
 }
 type setUserDataType = ReturnType<typeof setAuthUserData>
 
-
 type ActionsType = setUserDataType
+
 
 // reducer
 const SET_USER_DATA = 'SET_USER_DATA'
@@ -32,3 +35,16 @@ export const authReducer = (state: initialStateType = initialState, action: Acti
 
 // actions
 export const setAuthUserData = (data: initialStateType) => ({ type: SET_USER_DATA, data } as const)
+
+// thunks
+export const authMe = () => (dispatch: Dispatch) => {
+    api.me()
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setAuthUserData(res.data.data))
+            }
+        })
+        .catch(err => {
+            console.log('error: ', err)
+        })
+}

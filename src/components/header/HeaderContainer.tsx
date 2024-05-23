@@ -1,9 +1,8 @@
 import React from 'react';
 import { Header } from './Header';
-import { initialStateType, setAuthUserData } from '../../redux/auth-reducer';
+import { authMe, initialStateType, setAuthUserData } from '../../redux/auth-reducer';
 import { connect } from 'react-redux';
 import { AppRootStateType } from '../../redux/redux-store';
-import { authMe } from '../../redux/users_reducer';
 
 
 // types

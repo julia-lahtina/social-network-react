@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import { api } from "../api/api";
 import { setAuthUserData } from "./auth-reducer";
+import { setUserProfile } from "./profile_reducer";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -151,17 +152,5 @@ export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Di
             dispatch(toggleIsFetching(false))
             dispatch(setUsers(res.data.items))
             dispatch(setTotalUsersCount(res.data.totalCount))
-        })
-}
-
-export const authMe = () => (dispatch: Dispatch) => {
-    api.me()
-        .then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(setAuthUserData(res.data.data))
-            }
-        })
-        .catch(err => {
-            console.log('error: ', err)
         })
 }
