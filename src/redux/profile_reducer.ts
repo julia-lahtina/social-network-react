@@ -68,7 +68,7 @@ export const setUserProfile = (profile: ProfilePageType) => ({ type: SET_USER_PR
 
 
 // thunks
-export const getProfile = (userId: string) => (dispatch: Dispatch) => {
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
     api.getProfile(userId)
         .then(res => {
             dispatch(setUserProfile(res.data))
