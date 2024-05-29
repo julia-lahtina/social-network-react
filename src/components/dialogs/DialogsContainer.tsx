@@ -8,6 +8,7 @@ import {
   updateNewMessageTextActionCreator,
 } from "../../redux/dialogs_reducer";
 import { Redirect } from "react-router-dom";
+import { WithAuthRedirect } from "../../hoc/WithAuthRedirect";
 
 type MapStateToPropsType = {
   dialogsPage: DialogPageType;
@@ -39,12 +40,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
   };
 };
 
-//-----------------------------------
+//hoc-----------------------------------
 
-const AuthRedirectComponent = (props: any) => {
-  if (!props.isAuth) return <Redirect to={"login"} />;
-  return <Dialogs {...props} />;
-};
+const AuthRedirectComponent: any = WithAuthRedirect(Dialogs);
 
 //-----------------------------------
 
