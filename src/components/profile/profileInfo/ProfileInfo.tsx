@@ -2,6 +2,7 @@ import React from "react";
 import s from "./ProfileInfo.module.css";
 import { MapStateToPropsType } from "../ProfileContainer";
 import { Preloader } from "../../common/preloader/Preloader";
+import { ProfileStatus } from "./ProfileStatus";
 
 export const ProfileInfo = (props: MapStateToPropsType) => {
   if (!props.profile.profile) {
@@ -18,7 +19,7 @@ export const ProfileInfo = (props: MapStateToPropsType) => {
       <div className={s.descriptionBlock}>
         <img src={props.profile.profile.photos.large} alt="" />
         <span>About me: {props.profile.profile.aboutMe}</span>
-        <span>{props.profile.profile.lookingForAJob}</span>
+        <ProfileStatus status={"hi"} />
       </div>
     </>
   );
