@@ -2,10 +2,14 @@ import React from "react";
 import { Profile } from "./Profile";
 import { connect } from "react-redux";
 import { AppRootStateType } from "../../redux/redux-store";
-import { getUserProfile, setUserProfile } from "../../redux/profile_reducer";
+import {
+  getUserProfile,
+  setUserProfile,
+  getUserStatus,
+  updateStatus,
+} from "../../redux/profile_reducer";
 import { ProfilePageType } from "../../redux/store";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { WithAuthRedirect } from "../../hoc/WithAuthRedirect";
 import { compose } from "redux";
 
 // types
@@ -15,10 +19,12 @@ type PathParamsType = {
 export type MapStateToPropsType = {
   profile: ProfilePageType;
   isAuth: boolean;
+  status: string;
 };
 type MapDispatchToPropsType = {
   setUserProfile: (profile: ProfilePageType) => void;
   getUserProfile: (userId: string) => void;
+  getUserStatus: (userId: string) => void;
 };
 
 export type ProfilePagePropsType = MapStateToPropsType & MapDispatchToPropsType;
@@ -31,6 +37,7 @@ class ProfileContainer extends React.Component<PropsType> {
       userId = String(2);
     }
     this.props.getUserProfile(userId);
+    this.props.getUserStatus(userId);
   }
 
   render() {
@@ -41,9 +48,15 @@ class ProfileContainer extends React.Component<PropsType> {
 const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => ({
   profile: state.profilePage,
   isAuth: state.auth.isAuth,
+  status: state.profilePage.profile.status,
 });
 export default compose<React.ComponentType>(
-  connect(mapStateToProps, { setUserProfile, getUserProfile }),
+  connect(mapStateToProps, {
+    setUserProfile,
+    getUserProfile,
+    getUserStatus,
+    updateStatus,
+  }),
   withRouter
   //WithAuthRedirect
 )(ProfileContainer);
