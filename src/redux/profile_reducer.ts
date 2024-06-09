@@ -9,14 +9,12 @@ export type UpdateNewPostTextActionType = ReturnType<
 >;
 export type SetUserProfileType = ReturnType<typeof setUserProfile>;
 export type SetUserStatusType = ReturnType<typeof setStatus>;
-export type UpdateStatusType = ReturnType<typeof updateStatus>;
 
 // reducer
 const ADD_POST = "ADD_POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
-const UPDATE_STATUS = "UPDATE_STATUS";
 
 const initialState: ProfilePageType = {
   posts: [
@@ -73,11 +71,6 @@ export const profileReducer = (
         ...state,
         profile: { ...state.profile, status: action.status },
       };
-    case UPDATE_STATUS:
-      return {
-        ...state,
-        profile: { ...state.profile },
-      };
     default:
       return state;
   }
@@ -91,8 +84,6 @@ export const setUserProfile = (profile: ProfilePageType) =>
   ({ type: SET_USER_PROFILE, profile } as const);
 export const setStatus = (status: string) =>
   ({ type: SET_USER_STATUS, status } as const);
-export const updateStatus = (status: string) =>
-  ({ type: UPDATE_STATUS, status } as const);
 
 // thunks
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
@@ -110,7 +101,7 @@ export const getUserStatus = (userId: string) => (dispatch: Dispatch) => {
 export const updateUserStatus = (status: string) => (dispatch: Dispatch) => {
   profileAPI.updateUserStatus(status).then(res => {
     if (res.data.resultCode === 0) {
-      dispatch(updateStatus(status));
+      dispatch(setStatus(status));
     }
   });
 };

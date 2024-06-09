@@ -4,7 +4,6 @@ import {
   SetUserProfileType,
   SetUserStatusType,
   UpdateNewPostTextActionType,
-  UpdateStatusType,
 } from "./profile_reducer";
 import {
   AddMessageType,
@@ -103,8 +102,7 @@ export type ActionsTypes =
   | AddMessageType
   | UpdateNewMessageTextType
   | SetUserProfileType
-  | SetUserStatusType
-  | UpdateStatusType;
+  | SetUserStatusType;
 
 /* let store: StoreType = {
   _state: {
