@@ -8,8 +8,8 @@ import { Settings } from "./components/settings/Settings";
 import UsersContainer from "./components/users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
-import { LoginPage } from "./components/Login/Login";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
+import { Login } from "./components/Login/Login";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <Route path={"/music"} render={() => <Music />} />
         <Route path={"/settings"} render={() => <Settings />} />
         <Route path={"/users"} render={() => <UsersContainer />} />
-        <Route path={"/login"} render={() => <LoginPage />} />
+        <Route path={"/login"} render={() => <Login />} />
       </div>
     </div>
   );
