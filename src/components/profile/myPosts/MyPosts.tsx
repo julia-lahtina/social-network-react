@@ -2,6 +2,11 @@ import { Post } from "./post/Post";
 import s from "./MyPosts.module.css";
 import { MyPostsPagePropsType } from "./MyPostsContainer";
 import { Field, reduxForm } from "redux-form";
+import {
+  maxLengthCreator,
+  requiredField,
+} from "../../../utils/validators/validators";
+import { Textarea } from "../../common/formsControls/formsControls";
 
 export const MyPosts = (props: MyPostsPagePropsType) => {
   let postsElements = props.posts.map(p => (
@@ -21,11 +26,17 @@ export const MyPosts = (props: MyPostsPagePropsType) => {
   );
 };
 
+const maxLength = maxLengthCreator(10);
+
 export const AddNewPostForm = (props: any) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
-        <Field component={"textarea"} name="newPostText" />
+        <Field
+          component={Textarea}
+          name="newPostText"
+          validate={[requiredField, maxLength]}
+        />
       </div>
       <div>
         <button>Add post</button>
