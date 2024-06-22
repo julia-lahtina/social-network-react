@@ -3,10 +3,7 @@ import { Dispatch, compose } from "redux";
 import { AppRootStateType } from "../../redux/redux-store";
 import { DialogPageType } from "../../redux/store";
 import { connect } from "react-redux";
-import {
-  addMessageActionCreator,
-  updateNewMessageTextActionCreator,
-} from "../../redux/dialogs_reducer";
+import { addMessageActionCreator } from "../../redux/dialogs_reducer";
 import { WithAuthRedirect } from "../../hoc/WithAuthRedirect";
 
 type MapStateToPropsType = {
@@ -15,8 +12,7 @@ type MapStateToPropsType = {
 };
 
 type MapDispatchToPropsType = {
-  updateNewMessageBody: (body: string) => void;
-  sendMessage: () => void;
+  sendMessage: (newMessageBody: string) => void;
 };
 
 export type DialogsPagePropsType = MapStateToPropsType & MapDispatchToPropsType;
@@ -30,11 +26,8 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
   return {
-    updateNewMessageBody: (body: string) => {
-      dispatch(updateNewMessageTextActionCreator(body));
-    },
-    sendMessage: () => {
-      dispatch(addMessageActionCreator());
+    sendMessage: (newMessageBody: string) => {
+      dispatch(addMessageActionCreator(newMessageBody));
     },
   };
 };

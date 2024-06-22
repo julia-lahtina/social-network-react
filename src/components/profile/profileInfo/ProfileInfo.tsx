@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
-import { MapStateToPropsType } from "../ProfileContainer";
 import { Preloader } from "../../common/preloader/Preloader";
 import { ProfileStatus } from "./ProfileStatus";
 

@@ -1,15 +1,9 @@
 import {
   AddPostActionType,
-  profileReducer,
   SetUserProfileType,
   SetUserStatusType,
-  UpdateNewPostTextActionType,
 } from "./profile_reducer";
-import {
-  AddMessageType,
-  dialogsReducer,
-  UpdateNewMessageTextType,
-} from "./dialogs_reducer";
+import { AddMessageType } from "./dialogs_reducer";
 import { AppRootStateType } from "./redux-store";
 
 export type PostType = {
@@ -58,7 +52,6 @@ export type ProfilePageType = {
 export type DialogPageType = {
   dialogs: DialogType[];
   messages: MessageType[];
-  newMessageText: string;
 };
 
 export type SidebarType = {
@@ -98,9 +91,7 @@ export type AppPropsType = AppRootStateType &
 
 export type ActionsTypes =
   | AddPostActionType
-  | UpdateNewPostTextActionType
   | AddMessageType
-  | UpdateNewMessageTextType
   | SetUserProfileType
   | SetUserStatusType;
 

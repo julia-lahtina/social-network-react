@@ -4,15 +4,11 @@ import { api, profileAPI } from "../api/api";
 
 // types
 export type AddPostActionType = ReturnType<typeof addPostActionCreator>;
-export type UpdateNewPostTextActionType = ReturnType<
-  typeof updateNewPostTextActionCreator
->;
 export type SetUserProfileType = ReturnType<typeof setUserProfile>;
 export type SetUserStatusType = ReturnType<typeof setStatus>;
 
 // reducer
 const ADD_POST = "ADD_POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
 
@@ -54,7 +50,7 @@ export const profileReducer = (
     case ADD_POST:
       let newPost: PostType = {
         id: state.posts.length + 1,
-        message: state.newPostText,
+        message: action.newPostText,
         likesCount: 0,
       };
       return {
@@ -62,8 +58,6 @@ export const profileReducer = (
         posts: [...state.posts, newPost],
         newPostText: "",
       };
-    case UPDATE_NEW_POST_TEXT:
-      return { ...state, newPostText: action.newPostText };
     case SET_USER_PROFILE:
       return { ...state, profile: { ...state.profile, ...action.profile } };
     case SET_USER_STATUS:
@@ -77,9 +71,8 @@ export const profileReducer = (
 };
 
 // actions
-export const addPostActionCreator = () => ({ type: ADD_POST } as const);
-export const updateNewPostTextActionCreator = (newPostText: string) =>
-  ({ type: UPDATE_NEW_POST_TEXT, newPostText } as const);
+export const addPostActionCreator = (newPostText: string) =>
+  ({ type: ADD_POST, newPostText } as const);
 export const setUserProfile = (profile: ProfilePageType) =>
   ({ type: SET_USER_PROFILE, profile } as const);
 export const setStatus = (status: string) =>
